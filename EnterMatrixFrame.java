@@ -39,7 +39,7 @@ public class EnterMatrixFrame extends JDialog implements ActionListener {
 		this.setLayout(new BorderLayout(10,10));
 		this.n = n;
 		this.m = m;
-		
+//		System.out.println("(n,m)" + ".." + n + ".." + m);
 		
 		//panel 1 label
 		panel1.setLayout(new FlowLayout(FlowLayout.CENTER,10,10));
@@ -78,7 +78,7 @@ public class EnterMatrixFrame extends JDialog implements ActionListener {
 				for(int i = 0; i < EnterMatrixFrame.matrix.getRowDimension(); i++){					
 					for(int j = 0; j < EnterMatrixFrame.matrix.getColumnDimension(); j++){
 						i_j = EnterMatrixFrame.matrix.get(i, j)*100;
-						System.out.println(i_j + "\n");
+//						System.out.println(i_j + "\n");
 						EnterMatrixFrame.matrix.set(i, j, ((int)(i_j))%2);
 						EnterMatrixFrame.matrixTextValue[i][j].setText(EnterMatrixFrame.matrix.get(i, j)+"");
 						EnterMatrixFrame.matrixValue[i][j] = EnterMatrixFrame.matrix.get(i, j);						
@@ -120,10 +120,10 @@ public class EnterMatrixFrame extends JDialog implements ActionListener {
 									EnterMatrixFrame.matrixTextValue[y][j].setText(1+"");
 									EnterMatrixFrame.matrixValue[y][j] = 1;
 								}else{
-									EnterMatrixFrame.matrixTextValue[x][j].setText(-1+"");
-									EnterMatrixFrame.matrixValue[x][j] = -1;
-									EnterMatrixFrame.matrixTextValue[y][j].setText(-1+"");
-									EnterMatrixFrame.matrixValue[y][j] = -1;
+									EnterMatrixFrame.matrixTextValue[x][j].setText(1+"");
+									EnterMatrixFrame.matrixValue[x][j] = 1;
+									EnterMatrixFrame.matrixTextValue[y][j].setText(1+"");
+									EnterMatrixFrame.matrixValue[y][j] = 1;
 								}
 							}
 						}
@@ -141,8 +141,8 @@ public class EnterMatrixFrame extends JDialog implements ActionListener {
 								EnterMatrixFrame.matrixValue[i][j] = 1;		
 							}
 							if( i == y){
-								EnterMatrixFrame.matrixTextValue[i][j].setText(-1+"");
-								EnterMatrixFrame.matrixValue[i][j] = -1;
+								EnterMatrixFrame.matrixTextValue[i][j].setText(1+"");
+								EnterMatrixFrame.matrixValue[i][j] = 1;
 							}
 						}
 					}//end else					
@@ -170,8 +170,8 @@ public class EnterMatrixFrame extends JDialog implements ActionListener {
 					}
 				}
 				EnterMatrixFrame.matrix = new Matrix(EnterMatrixFrame.matrixValue);
-				EnterMatrixFrame.matrix.print(EnterMatrixFrame.matrix.getRowDimension(), EnterMatrixFrame.matrix.getRowDimension());
-				System.out.println("n: " + EnterMatrixFrame.matrix.getRowDimension() + " m: " + EnterMatrixFrame.matrix.getRowDimension());
+//				EnterMatrixFrame.matrix.print(EnterMatrixFrame.matrix.getRowDimension(), EnterMatrixFrame.matrix.getRowDimension());
+//				System.out.println("n: " + EnterMatrixFrame.matrix.getRowDimension() + " m: " + EnterMatrixFrame.matrix.getRowDimension());
 				for(int i = 0; i < EnterMatrixFrame.matrix.getRowDimension(); i++){					
 					for(int j = 0; j < EnterMatrixFrame.matrix.getColumnDimension();j++){
 						int k = i+j;
@@ -189,7 +189,7 @@ public class EnterMatrixFrame extends JDialog implements ActionListener {
 							}
 							Matrix submatrix = EnterMatrixFrame.matrix.getMatrix(i,j,i+j,j+j);
 							Double result = submatrix.det();
-							System.out.println(result);
+//							System.out.println(result);
 							if(result == 0 || result == -1 || result == 1){
 								//its TUM
 								continue;
@@ -202,19 +202,20 @@ public class EnterMatrixFrame extends JDialog implements ActionListener {
 					}
 					
 				}
-				JList list = new JList(new String[] {"Vertex Cover", "Matching", "None"});
+				JList list = new JList(new String[] {"Matching", "None"});
 				JOptionPane.showMessageDialog(
 				  null, list, "Select a Problem to Solve", JOptionPane.PLAIN_MESSAGE);
 					//System.out.println(Arrays.toString(list.getSelectedIndices()));
 				String selection = (String)list.getSelectedValue();
-				System.out.println("Selected " + selection);
-				if(selection.trim().equals("Vertex Cover")){
-					//solve vertex cover problem which is the dual of the matching
-				}else if(selection.trim().equals("Matching")){
-					//solve matching problem
-					
+//				System.out.println("Selected " + selection);
+				if(selection.equals("Matching")){
+					SolveLPFrame frame = new SolveLPFrame(selection);
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					frame.pack();
+					frame.setLocationRelativeTo(EnterMatrixFrame.mainFrame);
+					frame.setResizable(true);
+					frame.setVisible(true);
 				}
-					
 			}
 			
 		});

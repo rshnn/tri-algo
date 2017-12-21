@@ -62,6 +62,8 @@ public class InitialMatrixSizeFrame extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(InitialMatrixSizeFrame.mainFrame, "Each dimension must be greater than 0");
 					return;
 				}else{
+//					System.out.println("n: "  + n  + "\n");
+//					System.out.println("m: "  + m  + "\n");
 					EnterMatrixFrame frame = new EnterMatrixFrame(n,m);			
 					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					frame.pack();

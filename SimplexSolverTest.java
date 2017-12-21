@@ -41,9 +41,7 @@ import org.apache.commons.math.optimization.UnboundedSolutionException;
  */
 public class SimplexSolverTest extends TestCase {
 
-  public void testSimplexSolver() throws UnboundedSolutionException, NoFeasibleSolutionException {	  
-	
-	  
+  public void testSimplexSolver() throws UnboundedSolutionException, NoFeasibleSolutionException {	 	  
 	  
 	  
     LinearModel model = new LinearModel(new LinearObjectiveFunction(
